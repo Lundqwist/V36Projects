@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -26,14 +28,14 @@ namespace V36Projects
 
         public void Run()
         {
-            while (isRunning)
+            while (this.isRunning)
             {
-                PrintMenu();
+                Menu();
             }
         }
 
 
-        public void PrintMenu()
+        public void Menu()
         {
             DateTime date = DateTime.Now; // Current date
             CultureInfo cultureInfo = new CultureInfo("en-US");
@@ -43,21 +45,19 @@ namespace V36Projects
             DayOfWeek firstDayOfWeek = cultureInfo.DateTimeFormat.FirstDayOfWeek;
             weekNumber = calendar.GetWeekOfYear(date, rule, firstDayOfWeek);
 
-            
+
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("*********************************************");
             Console.WriteLine($"* Welcome to the v.{weekNumber} Projects!             *");
             Console.WriteLine("*********************************************");
             Console.WriteLine("*                                           *");
-            Console.WriteLine("*  Level Code                    option     *");
-            Console.WriteLine("*  Level 1                         1        *");
-            Console.WriteLine("*  Level 2                         2        *");
-            Console.WriteLine("*  Level 3                         3        *");
-            Console.WriteLine("*  Level 4                         4        *");
-            Console.WriteLine("*  Level 5                         5        *");
+            Console.WriteLine("*  1. PRODUCT LIST MANAGER LEVEL 1          *");
+            Console.WriteLine("*  2. PRODUCT LIST MANAGER LEVEL 2          *");
+            Console.WriteLine("*  3. PRODUCT LIST MANAGER LEVEL 3          *");
+            Console.WriteLine("*  4. PRODUCT LIST MANAGER LEVEL 4          *");
             Console.WriteLine("*                                           *");
-            Console.WriteLine("*  Exit program                    0        *");
+            Console.WriteLine("*  'exit'     Exit program                  *");
             Console.WriteLine("*                                           *");
             Console.WriteLine("*********************************************");
             Console.WriteLine();
@@ -96,10 +96,7 @@ namespace V36Projects
                     case "4":
                         Level4();
                         break;
-                    case "5":
-                        Level5();
-                        break;
-                    case "0":
+                    case "42":
                         isRunning = false;
                         Console.WriteLine("\n\n");
                         break;
@@ -107,12 +104,16 @@ namespace V36Projects
                         Console.SetCursorPosition(0, 18);
                         Console.Write("                                                       ");
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.SetCursorPosition(0, 18); 
+                        Console.SetCursorPosition(0, 18);
                         Console.WriteLine("Invalid selection. Please try again.");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
 
+            }
+            else if (input.ToLower().Trim() == "exit")
+            {
+                this.isRunning = false;
             }
             else
             {
@@ -130,16 +131,46 @@ namespace V36Projects
 
         public void Level1()
         {
+            List<string> products = new List<string>();
+            string input = string.Empty;
+            bool isRunning = true;
+            int numberOfProducts = 0;
+
             Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*********************************************");
-            Console.Write($"*  Welcome to the v.{weekNumber}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(" Level 1              ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*");
-            Console.WriteLine("*********************************************");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("  PRODUCT LIST MANAGER - LEVEL 2");
+            Console.WriteLine("--------------------------------------------" + "\n");
+
+            while (isRunning)
+            {
+
+                Console.WriteLine("* Enter products by name.\nWhen you are done, type 'Done'.");
+                Console.WriteLine();
+
+                Console.SetCursorPosition(0, 6);
+                Console.WriteLine("                                                 ");
+                Console.SetCursorPosition(0, 6);
+                Console.Write("Enter Product: ");
+                input = Console.ReadLine().Trim();
+
+                if (input.ToLower().Trim() != "done")
+                {
+                    products.Add(input);
+                    numberOfProducts++;
+                    Console.SetCursorPosition(1, 8);
+                    Console.Write($"Number of products entered: {numberOfProducts}");
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 10);
+                    Console.WriteLine("\nYou have entered the following products:");
+                    foreach (var product in products)
+                    {
+                        Console.WriteLine($"- {product}");
+                    }
+                    isRunning = !true;
+                }
+            }
 
 
             Console.WriteLine("\nPress any key to exit...");
@@ -149,17 +180,52 @@ namespace V36Projects
 
         public void Level2()
         {
-            Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*********************************************");
-            Console.Write($"*  Welcome to the v.{weekNumber}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(" Level 2              ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*");
-            Console.WriteLine("*********************************************");
+            List<string> products = new List<string>();
+            string input = string.Empty;
+            bool isRunning = true;
+            int numberOfProducts = 0;
 
+            Console.Clear();
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("  PRODUCT LIST MANAGER - LEVEL 2");
+            Console.WriteLine("--------------------------------------------" + "\n");
+
+            Console.Write("Enter products by name.\nWhen you are done, type '");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Exit");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("'." + "\n");
+
+            while (isRunning)
+            {
+
+                Console.SetCursorPosition(0, 6);
+                Console.WriteLine("                                                 ");
+                Console.SetCursorPosition(0, 6);
+                Console.Write("Enter Product: ");
+                input = Console.ReadLine().Trim();
+
+                if (input.ToLower().Trim() != "exit")
+                {
+                    products.Add(input);
+                    numberOfProducts++;
+                    Console.SetCursorPosition(1, 8);
+                    Console.Write($"Number of products entered: {numberOfProducts}");
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 10);
+                    Console.WriteLine("\nYou have entered the following products in alphabetical order:\nThe swedish 'åäö' counts as 'a' and 'o'\n");
+
+                    products.Sort();
+                    foreach (var product in products)
+                    {
+                        Console.WriteLine($"- {product}");
+                    }
+
+                    isRunning = !true;
+                }
+            }
 
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
@@ -168,59 +234,310 @@ namespace V36Projects
 
         public void Level3()
         {
+            List<string> products = new List<string>();
+            string input = string.Empty;
+            bool isRunning = true;
+            int numberOfProducts = 0;
+
             Console.Clear();
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*********************************************");
-            Console.Write($"*  Welcome to the v.{weekNumber}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(" Level 3              ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*");
-            Console.WriteLine("*********************************************");
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("  PRODUCT LIST MANAGER - LEVEL 3");
+            Console.WriteLine("--------------------------------------------" + "\n");
 
+            Console.Write("Enter product names (format: 'name-number').\nType '");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Exit");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("' to finish.\n");
+
+
+            while (isRunning)
+            {
+
+                Console.SetCursorPosition(0, 6);
+                Console.WriteLine("                                                 ");
+                Console.SetCursorPosition(0, 6);
+                Console.Write("Enter Product: ");
+                input = Console.ReadLine().Trim();
+
+                if (input.ToLower() == "exit")
+                {
+
+                    if (products.Count > 0)
+                    {
+                        Console.Clear();
+                        products.Sort();
+
+                        Console.WriteLine("\nSorted valid products:\nThe swedish 'åä' sorts as 'a' and 'ö' as 'o'\n");
+                        foreach (var product in products)
+                        {
+                            Console.WriteLine($"- {product}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No products were entered.");
+                    }
+
+                    break;
+
+                }
+                if (input.Equals(string.Empty))
+                {
+                    Console.SetCursorPosition(0, 18);
+                    Console.Write("                                                       ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(0, 18);
+                    Console.WriteLine("Input cannot be empty.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    if (CheckProduct(input))
+                    {
+                        products.Add(input);
+                    }
+                }
+            }
 
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
             Console.Clear();
         }
+
+
+
 
         public void Level4()
         {
-            Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*********************************************");
-            Console.Write($"*  Welcome to the v.{weekNumber}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(" Level 4              ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*");
-            Console.WriteLine("*********************************************");
+            List<string> products = new List<string>();
+            string input = string.Empty;
+            bool isRunning = true;
 
 
-            Console.WriteLine("\nPress any key to exit...");
+
+            while (isRunning)
+            {
+                Console.Clear();
+                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("  PRODUCT LIST MANAGER - LEVEL 4");
+                Console.WriteLine("--------------------------------------------" + "\n");
+
+                Console.WriteLine("--------------------------------------------\n");
+                Console.WriteLine("  1. Add Product");
+                Console.WriteLine("  2. View Products");
+                Console.WriteLine("  3. Search Product");
+                Console.WriteLine("  4. Delete Product");
+                Console.WriteLine("  5. Exit\n");
+
+                Console.SetCursorPosition(0, 12);
+                Console.WriteLine("                               ");
+                Console.SetCursorPosition(0, 14);
+                Console.WriteLine("                               ");
+
+                Console.SetCursorPosition(0, 12);
+                Console.Write("Choice: ");
+
+                input = Console.ReadLine().Trim();
+
+
+
+                if (input.All(char.IsDigit))
+                {
+
+
+                    switch (input)
+                    {
+                        case "1":
+                            Console.SetCursorPosition(0, 14);
+                            Console.Write("Enter Product: ");
+                            input = Console.ReadLine().Trim();
+                            if (CheckProduct(input))
+                            {
+                                products.Add(input);
+                            }
+
+                            break;
+                        case "2":
+
+                            Console.SetCursorPosition(0, 16);
+                            products.Sort();
+                            Console.WriteLine("List of products:");
+                            foreach (var product in products)
+                            {
+                                Console.WriteLine($"- {product}");
+                            }
+
+                            Console.WriteLine("\nPress any key to continue...");
+                            Console.ReadKey();
+
+                            break;
+                        case "3":
+                            Console.SetCursorPosition(0, 14);
+                            Console.Write("Search: ");
+                            input = Console.ReadLine().Trim();
+                            bool found = false;
+
+
+                            Console.SetCursorPosition(0, 16);
+                            foreach (var product in products)
+                            {
+                                string[] parts = product.Split('-');
+                                if (parts[0] == input || parts[1] == input)
+                                {
+                                    Console.WriteLine($"Product found: {product}");
+                                    found = true;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.WriteLine("Product not found.");
+                            }
+
+                            Console.WriteLine("\nPress any key to continue...");
+                            Console.ReadKey();
+                            break;
+                        case "4":
+                            Console.SetCursorPosition(0, 14);
+                            Console.Write("Delete: ");
+                            input = Console.ReadLine().Trim();
+                            found = false;
+
+                            if (CheckProduct(input))
+                            {
+
+                                Console.SetCursorPosition(0, 16);
+
+                                Console.WriteLine("Deleting product..." + input);
+                                products.Remove(input);
+
+                                Console.WriteLine("Product deleted.");
+                                found = true;
+
+                            }
+
+                            if (!found)
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.WriteLine("Product not found.");
+                            }
+
+                            Console.WriteLine("\nPress any key to continue...");
+                            Console.ReadKey();
+
+
+
+                            break;
+                        case "5":
+
+                            isRunning = false;
+                            break;
+                        default:
+                            Console.SetCursorPosition(0, 18);
+                            Console.Write("                                                       ");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.SetCursorPosition(0, 18);
+                            Console.WriteLine("Invalid selection. Please try again.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                    }
+
+
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 18);
+                    Console.Write("                                                       ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(0, 18);
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+
+            Console.SetCursorPosition(0, 20);
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
             Console.Clear();
+
         }
 
-        public void Level5()
+        private bool CheckProduct(string input)
         {
-            Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*********************************************");
-            Console.Write($"*  Welcome to the v.{weekNumber}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(" Level 5              ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("*");
-            Console.WriteLine("*********************************************");
+            bool valid = false;
+            if (!input.Contains('-'))
+            {
+                Console.SetCursorPosition(0, 18);
+                Console.Write("                                                       ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(0, 18);
+                Console.WriteLine("Product must contain a dash (-).");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                string[] parts = input.Split('-');
+                bool[] isValidFormat = { false, false };
+
+                if (parts[0].All(char.IsLetter))
+                {
+                    isValidFormat[0] = true;
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 18);
+                    Console.Write("                                                       ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(0, 18);
+                    Console.WriteLine("The left side must contain letters only.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
 
 
-            Console.WriteLine("\nPress any key to exit...");
-            Console.ReadKey();
-            Console.Clear();
+                if (parts[1].All(char.IsDigit))
+                {
+                    if (int.TryParse(parts[1], out int version))
+                    {
+
+                        if (version <= 500 && version >= 200)
+                        {
+
+                            isValidFormat[1] = true;
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(0, 18);
+                            Console.Write("                                                       ");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.SetCursorPosition(0, 18);
+                            Console.WriteLine("The numeric part must be between 200 and 500.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                    }
+
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 18);
+                    Console.Write("                                                       ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(0, 18);
+                    Console.WriteLine("The right side must contain numbers only.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                if (isValidFormat[0] && isValidFormat[1])
+                {
+                    valid = true;
+
+                }
+            }
+
+            return valid;
         }
     }
 }
