@@ -388,39 +388,50 @@ namespace V36Projects
 
                     switch (input)
                     {
-                        
+
                         case "1":                                                   // Add Product
                             Console.SetCursorPosition(0, 14);
                             Console.WriteLine("                               ");
                             Console.SetCursorPosition(0, 14);
                             Console.Write("Enter Product: ");
                             input = Console.ReadLine().Trim();
-                            
+
                             if (CheckProduct(input))
                             {
-                                
+
                                 products.Add(input);
 
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine(input + " Added to list.");
                                 Console.ForegroundColor = ConsoleColor.White;
-                            
+
                             }
 
                             break;
-                        
+
                         case "2":                                                   // View Products
                             Console.SetCursorPosition(0, 16);
                             products.Sort();
-                            Console.WriteLine("List of products:");
-                            
-                            foreach (var product in products)
+                            if (products.Count > 0)
                             {
-                                
-                                Console.WriteLine($"- {product}");
+                                Console.WriteLine("List of products:");
+
+                                foreach (var product in products)
+                                {
+
+                                    Console.WriteLine($"- {product}");
+
+                                }
+                            }
+                            else
+                            {
+
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("No products in the list.");
+                                Console.ForegroundColor = ConsoleColor.White;
                             
                             }
-
+                            
                             Console.WriteLine("\nPress any key to continue...");
                             Console.ReadKey();
 

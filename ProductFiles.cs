@@ -33,14 +33,29 @@ namespace V36Projects
 
         internal static List<string> ReadProductsFromFile(string fileName)
         {
-            
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string readJson = System.IO.File.ReadAllText(fileName);
-            var loaded = JsonSerializer.Deserialize<List<string>>(readJson, options);
-            
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                string readJson = System.IO.File.ReadAllText(fileName);
+                var loaded = JsonSerializer.Deserialize<List<string>>(readJson, options);
+                
+                return loaded ?? new List<string>();
+            }
+            catch
+            {
+
+                Console.SetCursorPosition(0, 14);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error occurred while reading products from file.");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
+
+                return new List<string>();
+            }
 
 
-            return loaded ?? new List<string>();
         }
     }
 }
