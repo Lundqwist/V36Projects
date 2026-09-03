@@ -405,6 +405,8 @@ namespace V36Projects
                                 Console.WriteLine(input + " Added to list.");
                                 Console.ForegroundColor = ConsoleColor.White;
 
+                                Console.WriteLine("\nPress any key to continue...");
+                                Console.ReadKey();
                             }
 
                             break;
@@ -579,27 +581,9 @@ namespace V36Projects
                             Console.SetCursorPosition(0, 14);
                             Console.WriteLine("                               ");
                             Console.SetCursorPosition(0, 14);
-                            
-                            if (ProductFiles.WriteProductsToFile(products, "MyProducts.json"))
-                            {
-                                
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("File saved.");
-                                Console.ForegroundColor = ConsoleColor.White;
-                            
-                            }
-                            else
-                            {
-                                
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Something broke!");
-                                Console.ForegroundColor = ConsoleColor.White;
-                            
-                            }
 
-                            Console.WriteLine("\nPress any key to continue...");
-                            Console.ReadKey();
-
+                            ProductFiles.WriteProductsToFile(products, "MyProducts.json");
+                            
                             break;
 
                         case "7":                                                                           // Load from file 'MyProducts.json'

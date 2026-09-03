@@ -21,11 +21,20 @@ namespace V36Projects
             {
                 System.IO.File.WriteAllText(fileName, json);
                 success = true;
+
+                Console.SetCursorPosition(0, 14);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("File written successfully.");
+                Console.ForegroundColor = ConsoleColor.White;
+
             }
             catch 
             {
                 success = false;
             }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
             
             return success;
             
@@ -39,6 +48,14 @@ namespace V36Projects
                 string readJson = System.IO.File.ReadAllText(fileName);
                 var loaded = JsonSerializer.Deserialize<List<string>>(readJson, options);
                 
+                Console.SetCursorPosition(0, 14);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("File was succesfully loaded.");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
+
                 return loaded ?? new List<string>();
             }
             catch
