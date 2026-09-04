@@ -74,9 +74,8 @@ namespace V36Projects
             Console.Write(" Please enter number: ");
 
             Console.SetCursorPosition(22, 16);
-            string input = Console.ReadLine().Trim();
-
-
+            string input = Console.ReadLine()?.Trim() ?? string.Empty;
+            
 
             if (int.TryParse(input, out int number))
             {
@@ -165,7 +164,7 @@ namespace V36Projects
                 Console.WriteLine("                                                 ");
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
-                input = Console.ReadLine().Trim();
+                input = Console.ReadLine()?.Trim() ?? string.Empty;
 
                 if (input.ToLower().Trim() != "done")
                 {
@@ -225,7 +224,7 @@ namespace V36Projects
                 Console.WriteLine("                                                 ");
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
-                input = Console.ReadLine().Trim();
+                input = Console.ReadLine()?.Trim() ?? string.Empty;
 
                 if (input.ToLower().Trim() != "exit")
                 {
@@ -290,8 +289,8 @@ namespace V36Projects
                 
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
-                
-                input = Console.ReadLine().Trim();
+
+                input = Console.ReadLine()?.Trim() ?? string.Empty;
 
                 if (input.ToLower() == "exit")
                 {
@@ -379,7 +378,7 @@ namespace V36Projects
                 Console.SetCursorPosition(0, 14);
                 Console.Write("Choice: ");
 
-                input = Console.ReadLine().Trim();
+                input = Console.ReadLine()?.Trim() ?? string.Empty;
 
 
 
@@ -394,7 +393,7 @@ namespace V36Projects
                             Console.WriteLine("                               ");
                             Console.SetCursorPosition(0, 14);
                             Console.Write("Enter Product: ");
-                            input = Console.ReadLine().Trim();
+                            input = Console.ReadLine()?.Trim() ?? string.Empty;
 
                             if (CheckProduct(input))
                             {
@@ -453,7 +452,7 @@ namespace V36Projects
                             Console.SetCursorPosition(0, 14);
                             Console.Write("Search: ");
 
-                            input = Console.ReadLine().Trim();
+                            input = Console.ReadLine()?.Trim() ?? string.Empty;
                             bool found = false;
 
                             // Creates an object of the Regex class with a pattern that matches the input against the product string. The pattern checks for two cases:
@@ -505,7 +504,7 @@ namespace V36Projects
                         case "4":                                                                   // Delete Product
                             Console.SetCursorPosition(0, 14);
                             Console.Write("Delete: ");
-                            input = Console.ReadLine().Trim();
+                            input = Console.ReadLine()?.Trim() ?? string.Empty;
                             found = false;
 
                             if (CheckProduct(input))
