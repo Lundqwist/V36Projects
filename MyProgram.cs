@@ -153,25 +153,25 @@ namespace V36Projects
             Console.WriteLine("--------------------------------------------");
             Console.WriteLine("  PRODUCT LIST MANAGER - LEVEL 2");
             Console.WriteLine("--------------------------------------------" + "\n");
+            Console.WriteLine("* Enter products by name.\nWhen you are done, type 'Done'.");
+            Console.WriteLine();
+
 
             while (isRunning)
             {
-
-                Console.WriteLine("* Enter products by name.\nWhen you are done, type 'Done'.");
-                Console.WriteLine();
 
                 Console.SetCursorPosition(0, 6);
                 Console.WriteLine("                                                 ");
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
-                input = Console.ReadLine()?.Trim() ?? string.Empty;
+                input = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
 
-                if (input.ToLower().Trim() != "done")
+                if (input.ToLower().Trim().ToUpper() != "DONE")
                 {
                 
                     products.Add(input);
                     numberOfProducts++;
-                    Console.SetCursorPosition(1, 8);
+                    Console.SetCursorPosition(1, 10);
                     Console.Write($"Number of products entered: {numberOfProducts}");
                 
                 }
@@ -224,9 +224,9 @@ namespace V36Projects
                 Console.WriteLine("                                                 ");
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
-                input = Console.ReadLine()?.Trim() ?? string.Empty;
+                input = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
 
-                if (input.ToLower().Trim() != "exit")
+                if (input != "EXIT")
                 {
                     
                     products.Add(input);
@@ -290,9 +290,9 @@ namespace V36Projects
                 Console.SetCursorPosition(0, 6);
                 Console.Write("Enter Product: ");
 
-                input = Console.ReadLine()?.Trim() ?? string.Empty;
+                input = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
 
-                if (input.ToLower() == "exit")
+                if (input == "EXIT")
                 {
 
                     if (products.Count > 0)
