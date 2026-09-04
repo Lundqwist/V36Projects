@@ -34,8 +34,12 @@ When running the app you'll see a menu with product list manager options. Use th
 
 ## JSON serialization (example)
 
-This project uses System.Text.Json for simple JSON tasks. Example model and usage:
+This project uses System.Text.Json for simple JSON tasks. Example model:
 
+[
+  "ASD-221",
+  "ASDF-231"
+]
 
 
 ## Notes
