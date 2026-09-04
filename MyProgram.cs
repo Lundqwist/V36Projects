@@ -398,12 +398,20 @@ namespace V36Projects
 
                             if (CheckProduct(input))
                             {
+                                if(products.Contains(input.ToUpper()))                        // Check if the product already exists in the list
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Product already exists in the list.");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
+                                else
+                                {
+                                    products.Add(input.ToUpper());
 
-                                products.Add(input);
-
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine(input + " Added to list.");
-                                Console.ForegroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine(input + " Added to list.");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                }
 
                                 Console.WriteLine("\nPress any key to continue...");
                                 Console.ReadKey();
