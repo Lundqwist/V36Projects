@@ -23,7 +23,7 @@ namespace V36Projects
 
             CalendarWeekRule rule = cultureInfo.DateTimeFormat.CalendarWeekRule;
             DayOfWeek firstDayOfWeek = cultureInfo.DateTimeFormat.FirstDayOfWeek;
-            weekNumber = calendar.GetWeekOfYear(date, rule, firstDayOfWeek);
+            weekNumber = calendar.GetWeekOfYear(date, rule, firstDayOfWeek);   // <<<<<<<<<  This was a fun option but I forgot that you might not look at it the correct week. :)
         }
 
         // Method to run the program, continuously displaying the menu until the user chooses to exit.
